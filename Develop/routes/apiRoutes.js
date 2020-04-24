@@ -1,17 +1,78 @@
-const dbJSON = require("../db/db.json");
+const db = require("../db/db.json");
 const fs = require("fs");
-module.exports = function(app) {
-    app.get("/api/notes", function(req, res) {
-        res.send(dbJSON);
-      });
 
-    //   app.post("/api/notes", function(req, res) {
-    //     // res.send(dbJSON);
-    //     let newNote = {
-    //         title: req.body.title,
-    //         text: req.body.text
-    //     }
+//npm package for an id to generate id for each note
 
-    //     fs.appendFile("./db/db.json", newNote);
-    //   });
+const uuid = require("uuid/v4");
+
+module.exports = function (app) {
+  app.get("/api/notes", function (req, res) {
+    res.json(db);
+  });
+
+  app.post("/api/notes", function (req, res) {
+
+    //call the uuid package to generate a new unique random id and assign to a variable
+
+    const newNoteID = uuid();
+    // let notesArray = [];
+    //set a variable object for the new note body with id, title, and note context
+    
+    let newNote = 
+      {
+        id: newNoteID,
+        title: req.body.title,
+        text: req.body.text
+      };
+
+    //read the db.json file and store the data you get back into a variable for all notes we get back
+    fs.readFile("./db/db.json", (err, data) => {
+      if (err) throw err;
+      console.log(data);
+      var notesArr = JSON.parse(data);
+      notesArr.push(newNote)
+ 
+    
+    //push the new note into the array we store all notes in
+    
+    //write new content into db.json file with the all notes array after we pushed the new note in.
+    fs.writeFile("./db/db.json", JSON.stringify(notesArr), function (err) {
+      if (err) throw err;
+      console.log('Saved!');
+      res.send(db);
+    });
+    //send the data to end the post process
+  });
+});
+  app.delete("/api/notes/:id", (req, res) => {
+    //read the db.json file
+    var idChosen = req.params.id;
+   fs.readFile("./db/db.json", (err, data) => {
+    if (err) throw err;
+    console.log(data);
+    var notesArr = JSON.parse(data);
+   var newNotesArr = notesArr.filter(notes => notes.id !== idChosen);
+   fs.writeFile("./db/db.json", JSON.stringify(newNotesArr), function (err) {
+    if (err) throw err;
+    console.log('Saved!');
+    res.send(db);
+  });
+  })
+    //filter through the data for all notes and assign to a variable
+    //where the id of the note we want to delete doesn't match the id of any notes in db.json
+    //so it would only return the notes we want to keep/display
+  
+      // notesArr.delete('/:id', async (req, res, next) => {
+      //   const { db, ObjectId } = await initDb()
+      //   const deletedNote = await db.collection('notes')
+      //     .deleteOne({ _id: ObjectId(req.params.id) })
+
+      //   res.status(200).send(deletedNote)
+      // })
+
+    //Lines 43-50??
+    //write the new variable we just created to db.json file
+    //send the data to end the delete process
+  })
+
 }
