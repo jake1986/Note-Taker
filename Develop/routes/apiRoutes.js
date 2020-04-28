@@ -51,7 +51,7 @@ module.exports = function (app) {
     if (err) throw err;
     console.log(data);
     var notesArr = JSON.parse(data);
-   var newNotesArr = notesArr.filter(notes => notes.id !== idChosen);
+   var newNotesArr = notesArr.filter(note => note.id != idChosen);
    fs.writeFile("./db/db.json", JSON.stringify(newNotesArr), function (err) {
     if (err) throw err;
     console.log('Saved!');
@@ -61,16 +61,7 @@ module.exports = function (app) {
     //filter through the data for all notes and assign to a variable
     //where the id of the note we want to delete doesn't match the id of any notes in db.json
     //so it would only return the notes we want to keep/display
-  
-      // notesArr.delete('/:id', async (req, res, next) => {
-      //   const { db, ObjectId } = await initDb()
-      //   const deletedNote = await db.collection('notes')
-      //     .deleteOne({ _id: ObjectId(req.params.id) })
 
-      //   res.status(200).send(deletedNote)
-      // })
-
-    //Lines 43-50??
     //write the new variable we just created to db.json file
     //send the data to end the delete process
   })

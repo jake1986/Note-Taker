@@ -1,5 +1,3 @@
-var fs = require("fs");
-
 var $noteTitle = $(".note-title");
 var $noteText = $(".note-textarea");
 var $saveNoteBtn = $(".save-note");
@@ -136,7 +134,10 @@ var getAndRenderNotes = function() {
   });
 };
 
-$saveNoteBtn.on("click", handleNoteSave);
+$saveNoteBtn.on("click", function() {
+  console.log("clicked");
+});
+// $saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
 $newNoteBtn.on("click", handleNewNoteView);
 $noteList.on("click", ".delete-note", handleNoteDelete);
