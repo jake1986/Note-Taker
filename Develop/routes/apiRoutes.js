@@ -17,7 +17,7 @@ module.exports = function (app) {
     const newNoteID = uuid();
     // let notesArray = [];
     //set a variable object for the new note body with id, title, and note context
-    
+    console.log(req.body);
     let newNote = 
       {
         id: newNoteID,
