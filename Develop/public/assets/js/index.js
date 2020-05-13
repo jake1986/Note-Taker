@@ -134,20 +134,22 @@ var getAndRenderNotes = function() {
   });
 };
 
-$saveNoteBtn.on("click", function() {
-  var getTitle = $(".note-title").val();
-  var getText = $(".note-textarea").val();
-  var newNote = {
-    title: getTitle,
-    text: getText
-  };
-  saveNote(newNote).then(function(response) {
-    getNotes().then(function(response) {
-      console.log(response);
-    });
-  });
-});
-// $saveNoteBtn.on("click", handleNoteSave);
+// // $saveNoteBtn.on("click", function() {
+// //   var getTitle = $(".note-title").val();
+// //   var getText = $(".note-textarea").val();
+// //   var newNote = {
+// //     title: getTitle,
+// //     text: getText
+// //   };
+//   saveNote(newNote).then(function(response) {
+//     getNotes();
+//     // .then(function(response) {
+//     //   console.log(response);
+//     // });
+//   });
+// });
+
+$saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
 $newNoteBtn.on("click", handleNewNoteView);
 $noteList.on("click", ".delete-note", handleNoteDelete);

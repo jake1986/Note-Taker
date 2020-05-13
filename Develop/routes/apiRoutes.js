@@ -54,7 +54,7 @@ module.exports = function (app) {
    var newNotesArr = notesArr.filter(note => note.id != idChosen);
    fs.writeFile("./db/db.json", JSON.stringify(newNotesArr), function (err) {
     if (err) throw err;
-    console.log('Saved!');
+    console.log('Deleted!');
     res.send(db);
   });
   })
