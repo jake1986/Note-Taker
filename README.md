@@ -28,7 +28,7 @@ https://jake1986.github.io/Note-Taker/
 
 ## GitHub Repo
 
-
+https://github.com/jake1986/Note-Taker
 
 ## Questions
 
