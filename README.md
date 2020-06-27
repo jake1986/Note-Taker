@@ -24,7 +24,11 @@ DELETE /api/notes/:id - Should receive a query parameter containing the id of a 
 
 ## Deployed 
 
+https://jake1986.github.io/Note-Taker/
+
 ## GitHub Repo
+
+
 
 ## Questions
 
