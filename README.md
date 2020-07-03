@@ -24,7 +24,7 @@ DELETE /api/notes/:id - Should receive a query parameter containing the id of a 
 
 ## Deployed 
 
-https://shrouded-springs-67690.herokuapp.com/
+https://safe-sea-49656.herokuapp.com/
 
 ## GitHub Repo
 
